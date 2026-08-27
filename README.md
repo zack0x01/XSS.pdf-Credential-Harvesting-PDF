@@ -29,3 +29,14 @@ Open `poc.pdf`, type credentials into the two prompts, click "View document", an
 - The submit requires a click; Chrome's PDFium does not fire `SubmitForm` on open or on hover, only on the button click.
 - JavaScript `submitForm()` / `launchURL()` are sandboxed and blocked in Chrome, but the `SubmitForm` button action is handled by the native form engine and does fire.
 - For authorized testing only.
+
+---
+
+## Author
+
+<p align="left">
+  <a href="https://hackerz.space"><img alt="hackerz.space" src="https://img.shields.io/badge/Learn%20Ethical%20Hacking-hackerz.space-00C2FF?style=for-the-badge&logo=bookstack&logoColor=white" /></a>
+  <a href="https://buymeacoffee.com/zack0x01"><img alt="Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-zack0x01-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" /></a>
+  <a href="https://youtube.com/@zack0x01"><img alt="YouTube" src="https://img.shields.io/badge/YouTube-zack0x01-FF0000?style=for-the-badge&logo=youtube&logoColor=white" /></a>
+  <a href="https://x.com/zack0x01_"><img alt="X" src="https://img.shields.io/badge/X-zack0x01_-000000?style=for-the-badge&logo=x&logoColor=white" /></a>
+</p>
